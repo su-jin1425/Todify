@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, query, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import TodoItem from './TodoItem';
+import styles from './TodoList.module.css';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -16,7 +17,7 @@ function TodoList() {
       });
       setTodos(todosArr);
     });
-    return () => unsubscribe();  // Clean up listener
+    return () => unsubscribe();
   }, []);
 
   const toggleComplete = async (todo) => {
@@ -28,9 +29,14 @@ function TodoList() {
   };
 
   return (
-    <ul>
+    <ul className={styles.todoList}>
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} toggleComplete={toggleComplete} onDelete={handleDelete} />
+        <TodoItem 
+          key={todo.id} 
+          todo={todo} 
+          toggleComplete={toggleComplete} 
+          onDelete={handleDelete} 
+        />
       ))}
     </ul>
   );

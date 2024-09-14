@@ -1,33 +1,129 @@
 ﻿/* App.css */
-.App {
-  text-align: center;
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+}
+
+.lightMode {
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.stars, .twinkling {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.stars {
+  background: #000 url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png') repeat top center;
+  z-index: -3;
+}
+
+.twinkling {
+  background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png') repeat top center;
+  z-index: -2;
+  animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-input {
-  margin: 5px;
-  padding: 8px;
-  width: 200px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-button {
-  margin: 5px;
-  padding: 8px;
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  margin: 0;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.logout-btn {
-  background-color: red;
-  color: white;
-  padding: 10px;
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.themeToggle, .logoutBtn {
+  padding: 10px 20px;
   border: none;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.logout-btn:hover {
-  background-color: darkred;
+.themeToggle {
+  background-color: var(--primary-color);
+  color: var(--background-dark);
 }
 
-.error {
-  color: red;
-  margin-top: 10px;
+.logoutBtn {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.main {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .buttonContainer {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
 }

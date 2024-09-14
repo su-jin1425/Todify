@@ -1,0 +1,65 @@
+/* AddTodo.css */
+.addTodo {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  background-color: var(--input-dark);
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.lightMode .input {
+  background-color: var(--input-light);
+  color: var(--text-dark);
+}
+
+.addBtn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--background-dark);
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addBtn:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+.error {
+  color: #ff3366;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .inputWrapper {
+    flex-direction: column;
+  }
+
+  .addBtn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

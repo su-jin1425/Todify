@@ -1,14 +1,15 @@
-﻿// App.js
+﻿//App.js
 import React, { useState, useEffect } from 'react';
 import { auth } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import TodoList from './components/TodoList';
 import AddTodo from './components/AddTodo';
 import Login from './components/Login';
-import './App.css';
+import styles from './App.module.css';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -18,7 +19,12 @@ function App() {
         setUser(null);
       }
     });
-    return () => unsubscribe();  // Clean up listener
+
+    // Check for user's preferred theme
+    const isDarkMode = localStorage.getItem('darkMode') === 'false';
+    setDarkMode(!isDarkMode);
+
+    return () => unsubscribe();
   }, []);
 
   const handleLogout = () => {
@@ -29,20 +35,39 @@ function App() {
     });
   };
 
+  const toggleTheme = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', !newDarkMode);
+  };
+
   return (
-    <div className="App">
-      {user ? (
-        <>
-          <header>
-            <h1>Todo List</h1>
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
-          </header>
-          <AddTodo />
-          <TodoList />
-        </>
-      ) : (
-        <Login />
-      )}
+    <div className={`${styles.app} ${!darkMode ? styles.lightMode : ''}`}>
+      <div className={styles.background}>
+        <div className={styles.stars}></div>
+        <div className={styles.twinkling}></div>
+      </div>
+      <div className={styles.content}>
+        {user ? (
+          <>
+            <header className={styles.header}>
+              <h1 className={styles.title}>Todify</h1>
+              <div className={styles.buttonContainer}>
+                <button className={styles.themeToggle} onClick={toggleTheme}>
+                  {!darkMode ? '🌙 Dark' : '☀️ Light'}
+                </button>
+                <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
+              </div>
+            </header>
+            <main className={`${styles.main} ${styles.fadeIn}`}>
+              <AddTodo />
+              <TodoList />
+            </main>
+          </>
+        ) : (
+          <Login />
+        )}
+      </div>
     </div>
   );
 }

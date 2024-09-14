@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;700&display=swap');
+
+:root {
+  --bg-color: #0f0f1f;
+  --text-color: #e0e0ff;
+  --header-bg: rgba(20, 20, 40, 0.8);
+  --main-bg: rgba(30, 30, 60, 0.6);
+  --btn-bg: #4a90e2;
+  --btn-text: #ffffff;
+  --logout-btn-bg: #e74c3c;
+  --logout-btn-text: #ffffff;
+  --border-color: #4a4a8a;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --transition: all 0.3s ease;
+  --title-font: 'Orbitron', sans-serif;
+  --body-font: 'Exo 2', sans-serif;
+}
+
+.lightMode {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --main-bg: rgba(255, 255, 255, 0.8);
+  --btn-bg: #3498db;
+  --btn-text: #ffffff;
+  --logout-btn-bg: #e74c3c;
+  --logout-btn-text: #ffffff;
+  --border-color: #cccccc;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font);
+  font-weight: 400;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.stars, .twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000 url('http://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
+  z-index: -2;
+}
+
+.twinkling {
+  background: transparent url('http://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
+  z-index: -1;
+  animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: var(--header-bg);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 700;
+  color: var(--text-color);
+  font-family: var(--title-font);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.logoutBtn, .themeToggle {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 700;
+  transition: var(--transition);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--body-font);
+}
+
+.logoutBtn:hover, .themeToggle:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.logoutBtn {
+  background-color: var(--logout-btn-bg);
+  color: var(--logout-btn-text);
+}
+
+.main {
+  flex: 1;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: var(--main-bg);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+  }
+
+  .title {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logoutBtn, .themeToggle {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 15px;
+  }
+
+  .main {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .main {
+    max-width: 90%;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-in;
+}
