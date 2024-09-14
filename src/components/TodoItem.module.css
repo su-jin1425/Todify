@@ -19,14 +19,11 @@
   flex: 1;
   margin-right: 15px;
   cursor: pointer;
-  font-size: 50px;
+  font-size: 2rem;
   color: #5DA3A7;  
 }
 
-.lightMode .todoText {
-  font-size: 50px;
-  color: #5DA3A7;  
-}
+
 
 .completed .todoText {
   text-decoration: line-through;
